@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      var userAge = getRandomInt(18, 65); // Idade aleatória entre 18 e 65
+      var userId = "user_" + Math.random().toString(36).substr(2, 9); // ID de usuário aleatório
+      let a = getRandomInt(0, 1);
+      a = a === 0 ? "longe" : "perto";
+      console.log(a);
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        user_age: userAge,
+        user_id: userId,
+        animal_range: a,
+      });
+
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-00000000");
+
+      function trackCardHover(cardName) {
+        window.dataLayer.push("event", "card_hover", {
+          event: "card_hover",
+          card_name: cardName,
+          page_title: "Root Jogo Base",
+        });
+      }
+
+      function handleCardHover(cardElement, cardName) {
+        // Verifica se o evento já foi registrado para este card
+        if (cardElement.dataset.hovered === "false") {
+          window.dataLayer.push({
+            event: "card_hover",
+            card_name: cardName,
+            page_title: "Root Jogo Base",
+          });
+          cardElement.dataset.hovered = "true"; // Marca como já registrado
+        }
+      }
+
+      function resetHoverState(cardElement) {
+        // Redefine o estado para permitir novo evento na próxima entrada
+        cardElement.dataset.hovered = "false";
+      }
+
+      // Integração com YouTube Iframe API
+      function onYouTubeIframeAPIReady() {
+        var player = new YT.Player("ytplayer", {
+          events: {
+            onStateChange: onPlayerStateChange,
+          },
+        });
+      }
+
+      function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          window.dataLayer.push({
+            event: "video_play",
+            video_title: event.target.getVideoData().title,
+            video_duration: player.getVideoData().duration,
+          });
+        }
+      }
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Root Expansão Ribeirinhos</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #fff; /* Branco */
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #000; /* Preto */
+        color: #fff; /* Branco */
+      }
+      header h1 {
+        margin: 0;
+      }
+      header img {
+        width: 30px;
+        height: 30px;
+      }
+      .hero {
+        width: 100%;
+        height: 400px;
+        background-image: url(bannerR.jpeg);
+        background-size: cover;
+        background-position: center;
+      }
+      .cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px;
+      }
+      .card {
+        width: 200px;
+        height: 300px;
+        perspective: 1000px;
+      }
+      .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+      }
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border: 1px solid #000; /* Preto */
+        border-radius: 10px;
+      }
+      .card-front {
+        background: #fff; /* Branco */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-front img {
+        width: 80%;
+        height: auto;
+      }
+      .card-back {
+        background: #f0f0f0; /* Cinza claro */
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        overflow: auto; /* Adiciona a rolagem */
+      }
+      .card-back h3 {
+        margin-bottom: 5px;
+        text-decoration: underline;
+        color: #298936;
+      }
+      .card-back p {
+        font-size: 11px;
+        text-align: justify;
+        color: #333; /* Cinza escuro */
+      }
+      .learn-more {
+        text-align: center;
+        margin: 40px 0;
+      }
+      .learn-more h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #000; /* Preto */
+      }
+      .learn-more iframe {
+        width: 80%;
+        max-width: 800px;
+        border: 2px solid #000; /* Preto */
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-00000000"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+      <h1>Root RiverFolk Expansion</h1>
+      <img src="icone.webp" alt="Site Icon" />
+    </header>
+    <div class="hero"></div>
+    <div class="cards-container">
+      <div
+        class="card"
+        data-hovered="false"
+        onmouseenter="handleCardHover(this, 'Companhia Ribeirinha')"
+        onmouseleave="resetHoverState(this)"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="ribeirinho.webp" alt="Ribeirinhos" />
+          </div>
+          <div class="card-back">
+            <h3>Companhia Ribeirinha</h3>
+            <p>
+              Quando chegou a notícia de que a Floresta à margem do grande lago
+              estava mergulhando em uma guerra total, a Companhia Ribeirinha
+              rapidamente enviou seus oficiais para montar operações.<br /><br />À
+              medida que outras facções contratam seus serviços, eles podem
+              consolidar ainda mais seus interesses comerciais estabelecendo
+              postos de comércio ao longo do rio, acumulando pontos de vitória.
+              Também podem conquistar pontos através da simples acumulação de
+              fundos, mas um grande tesouro atrai facilmente os inimigos, então
+              os Ribeirinhos devem ser cautelosos ao expandir suas operações
+              pela perigosa floresta. A astúcia comercial e a vigilância
+              constante serão essenciais nessa busca pelo ouro
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="card"
+        data-hovered="false"
+        onmouseenter="handleCardHover(this, 'Lagartos Cultistas')"
+        onmouseleave="resetHoverState(this)"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="lagarto.webp" alt="Lagarto" />
+          </div>
+          <div class="card-back">
+            <h3>Os Lagartos Cultistas</h3>
+            <p>
+              Atendendo às criaturas descartadas da Floresta, o Culto dos
+              Lagartos busca sobrepujar seus inimigos por meio de pura força de
+              vontade.<br /><br />
+              Onde quer que o Culto governe as clareiras, ele pode construir
+              jardins, usando a boca e o bico para espalhar seu evangelho entre
+              os animais locais.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="card"
+        data-hovered="false"
+        onmouseenter="handleCardHover(this, 'Malandros')"
+        onmouseleave="resetHoverState(this)"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="malandros.jpeg" alt="vagabond" />
+          </div>
+          <div class="card-back">
+            <h3>Malandros</h3>
+            <p>
+              O Malandro joga em todos os lados do conflito, embarcando em
+              missões para aumentar sua reputação por toda a floresta.<br /><br />
+              Cada vez que o Malandro melhora sua relação com outra facção ou
+              elimina um guerreiro de uma facção hostil, ele ganha pontos de
+              vitória. Além disso, ele pode completar missões para acumular
+              ainda mais pontos. Para se mover e agir com eficiência, o Malandro
+              precisa gerenciar cuidadosamente sua mochila de itens, ampliando
+              sua coleção ao explorar as ruínas da floresta e oferecendo ajuda
+              às outras facções. Astuto e independente, ele traça seu próprio
+              caminho rumo à fama e influência.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="learn-more">
+      <h2>Venha saber mais!</h2>
+      <iframe
+        id="ytplayer"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/1KFojELBnfk?enablejsapi=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+  </body>
+</html>
